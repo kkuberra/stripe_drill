@@ -23,9 +23,6 @@ app.get("/", (req, res) => {
 app.post("/accept-payment", (req, res) => {
   const token = req.body.stripeToken;
   const amount = req.body.amount;
-  console.log("====================================");
-  console.log(req.body);
-  console.log("====================================");
 
   const charge = stripe.charges.create({
     amount,
@@ -37,8 +34,8 @@ app.post("/accept-payment", (req, res) => {
 
   charge
     .then(result => {
-      res.json(result);}
-  )
+      res.json(result);
+    })
     .catch(err => {
       console.error(err);
       const error = {
